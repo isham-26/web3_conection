@@ -2,7 +2,7 @@ const solc=require("solc");
 const fs=require("fs")
 const Web3 = require('web3');
 
-// Using an HTTP provider (Infura)
+// Using an HTTP provider (ganache)
 const httpProviderUrl = 'HTTP://127.0.0.1:7545';
 const httpProvider = new Web3.providers.HttpProvider(httpProviderUrl);
 
@@ -33,6 +33,7 @@ var output=JSON.parse(solc.compile(JSON.stringify(input)));
 const ABI=output.contracts["demo.sol"]["demo"].abi;
 const bytecode=output.contracts["demo.sol"]["demo"].evm.bytecode.object;
 contract = new web3.eth.Contract(ABI);
+contract = new web3.eth.Contract(ABI);
 let defaultAccount;
 web3.eth.getAccounts().then((accounts) => {
   console.log("Accounts:", accounts); //it will show all the ganache accounts
@@ -46,12 +47,13 @@ web3.eth.getAccounts().then((accounts) => {
       console.log("Contract Address:", receipt.contractAddress);
     })
     .then((demoContract) => {
-      demoContract.methods.x().call((data) => {
+      demoContract.methods.number().call((err, data) => {
         console.log("Initial Value:", data);
       });
     });
   
 });
+
 
   
   

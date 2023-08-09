@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: UNLICENSED
 
-pragma solidity  ^0.8.19;
+pragma solidity  ^0.8.8;
 
 contract demo{
     uint public number=10;
